@@ -47,6 +47,10 @@ class MyApp extends StatelessWidget {
                 // margin: EdgeInsets.only(left: 150, top: 150),
                 // padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
               ),
+              SizedBox(
+                height: 40.0,
+                child: Center(child: Text("Sized Box")),
+              ),
               Container(
                 child: Row(
                   children: [ Container(
