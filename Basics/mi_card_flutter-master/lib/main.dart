@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(
@@ -14,39 +15,95 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 50.0,
-                backgroundImage: AssetImage('images/arun.jpg'),
-              ),
-              Text(
-                "Arun Sha",
-                style: TextStyle(
-                  fontSize: 50.0,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.red,
+                  radius: 50.0,
+                  backgroundImage: AssetImage('images/arun.jpg'),
+                ),
+                Text(
+                  "Arun Sha",
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Pacifico',
+                  ),
+                ),
+                Text(
+                  'FLUTTER DEVELOPER',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontFamily: 'SourceSansPro',
+                    color: Colors.teal.shade100,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 2.5,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                  // width: 150.0,
+                  child: Divider(
+                    color: Colors.teal[100],
+                    indent: 120.0,
+                    endIndent: 120.0,
+                  ),
+                ),
+                Container(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Pacifico',
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        color: Colors.teal,
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        "+91 8526030805",
+                        style: TextStyle(
+                          color: Colors.teal[900],
+                          fontSize: 20.0,
+                          fontFamily: "Pacifico",
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                'FLUTTER DEVELOPER',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'SourceSansPro',
-                  color: Colors.teal.shade100,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2.5,
+                Container(
+                  color: Colors.white,
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.email,
+                        color: Colors.teal,
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        'arunsha0007@gmail.com',
+                        style: TextStyle(
+                            color: Colors.teal[900],
+                            fontSize: 20.0,
+                            fontFamily: 'Pacifico'),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blue,
-          child: Icon(Icons.add),
         ),
       ),
     );
