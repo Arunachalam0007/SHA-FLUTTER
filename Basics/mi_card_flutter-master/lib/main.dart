@@ -52,53 +52,41 @@ class MyApp extends StatelessWidget {
                     endIndent: 120.0,
                   ),
                 ),
-                Container(
+                Card(
                   color: Colors.white,
                   margin:
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.phone,
-                        color: Colors.teal,
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.phone,
+                      color: Colors.teal,
+                    ),
+                    title: Text(
+                      "+91 8526030805",
+                      style: TextStyle(
+                        color: Colors.teal[900],
+                        fontSize: 20.0,
+                        fontFamily: "Pacifico",
                       ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      Text(
-                        "+91 8526030805",
-                        style: TextStyle(
-                          color: Colors.teal[900],
-                          fontSize: 20.0,
-                          fontFamily: "Pacifico",
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-                Container(
+                Card(
                   color: Colors.white,
                   margin:
                       EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                  padding: EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.email,
-                        color: Colors.teal,
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      Text(
-                        'arunsha0007@gmail.com',
-                        style: TextStyle(
-                            color: Colors.teal[900],
-                            fontSize: 20.0,
-                            fontFamily: 'Pacifico'),
-                      ),
-                    ],
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.email,
+                      color: Colors.teal,
+                    ),
+                    title: Text(
+                      'arunsha0007@gmail.com',
+                      style: TextStyle(
+                          color: Colors.teal[900],
+                          fontSize: 20.0,
+                          fontFamily: 'Pacifico'),
+                    ),
                   ),
                 ),
               ],
