@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -30,26 +31,48 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-
-  void getCurrentAnswer(bool userPickedAnswer){
+  void getCurrentAnswer(bool userPickedAnswer) {
     bool currentAnswer = quizBrain.getAnswer();
-    if (currentAnswer == userPickedAnswer ) {
-      scoreKeeper.add(
-        Icon(
-          Icons.check,
-          color: Colors.green,
-        ),
-      );
-    } else {
-      scoreKeeper.add(
-        Icon(
-          Icons.close,
-          color: Colors.red,
-        ),
-      );
-    }
     setState(() {
-      quizBrain.nextQuestion();
+      bool lastQuestion = quizBrain.isLastQuestion();
+
+      if (quizBrain.isLastQuestion() == true) {
+        quizBrain.questionNumberReset();
+        Alert(
+            context: context,
+            title: "Finished",
+            desc: "You've Successfully completed the Quizzler.",
+            buttons: [
+              DialogButton(
+                child: Text(
+                  'COOL',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+                onPressed: () => Navigator.pop(context),
+              )
+            ]).show();
+        scoreKeeper.clear();
+      } else {
+        if (currentAnswer == userPickedAnswer) {
+          scoreKeeper.add(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        } else {
+          scoreKeeper.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+        quizBrain.nextQuestion();
+      }
     });
   }
 
@@ -65,7 +88,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestions() ,
+                quizBrain.getQuestions(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
