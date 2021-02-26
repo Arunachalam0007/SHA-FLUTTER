@@ -4,11 +4,7 @@ import 'reusable_card.dart';
 import 'icon_content.dart';
 import 'constants.dart';
 
-
-enum GenderType {
-  male,
-  female
-}
+enum GenderType { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,7 +12,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-
   GenderType gender;
 
   @override
@@ -30,18 +25,21 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
               children: [
                 Expanded(
                   child: ReusableCard(
-                    cardColor: gender == GenderType.male ? kActiveCardColor : kInActiveCardColor,
+                    cardColor: gender == GenderType.male
+                        ? kActiveCardColor
+                        : kInActiveCardColor,
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.mars,
                       iconText: 'MALE',
                     ),
-                    onPress: (){
+                    onPress: () {
                       setState(() {
                         gender = GenderType.male;
                       });
@@ -50,12 +48,14 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    cardColor: gender == GenderType.female ? kActiveCardColor : kInActiveCardColor,
+                    cardColor: gender == GenderType.female
+                        ? kActiveCardColor
+                        : kInActiveCardColor,
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                       iconText: 'FEMALE',
                     ),
-                    onPress: (){
+                    onPress: () {
                       setState(() {
                         gender = GenderType.female;
                       });
@@ -68,6 +68,30 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: ReusableCard(
               cardColor: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        '160',
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
