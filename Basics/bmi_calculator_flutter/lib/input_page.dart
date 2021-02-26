@@ -90,18 +90,30 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ],
                   ),
-                  Slider(
-                      value: currentHeight.toDouble(),
-                      min: 120.0,
-                      max: 220.0,
-                      activeColor: kBottomContainerColor,
-                      inactiveColor: Color(0xFF8D8E98),
-                      onChanged: (double sliderValue){
-                        //update slider value when dragging the slider
-                        setState(() {
-                          currentHeight = sliderValue.round();
-                        });
-                      }
+                  SliderTheme(
+                    // Customize slider theme
+                    //SliderTheme.of(context) is copying default style of slider
+                    data: SliderTheme.of(context).copyWith(
+                      thumbColor: Color(0xFFEB1555),
+                      overlayColor: Color(0x29EB1555),
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape: RoundSliderOverlayShape(overlayRadius: 25),
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: Color(0xFF8D8E98),
+                    ),
+                    child: Slider(
+                        value: currentHeight.toDouble(),
+                        min: 120.0,
+                        max: 220.0,
+                        // we need to specify this in slider theme bec this will override thumbColor
+                        // activeColor: Colors.white,
+                        onChanged: (double sliderValue) {
+                          //update slider value when dragging the slider
+                          setState(() {
+                            currentHeight = sliderValue.round();
+                          });
+                        }),
                   ),
                 ],
               ),
