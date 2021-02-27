@@ -4,6 +4,8 @@ import 'reusable_card.dart';
 import 'icon_content.dart';
 import 'constants.dart';
 import 'results_page.dart';
+import 'bottom_button.dart';
+import 'icon_button_content.dart';
 
 enum GenderType { male, female }
 
@@ -142,7 +144,7 @@ class _InputPageState extends State<InputPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(
+                          IconButtonContent(
                             childWidget: Icon(Icons.add),
                             buttonShape: CircleBorder(),
                             onButtonPressed: () {
@@ -154,7 +156,7 @@ class _InputPageState extends State<InputPage> {
                           SizedBox(
                             width: 20.0,
                           ),
-                          IconButton(
+                          IconButtonContent(
                             childWidget: Icon(FontAwesomeIcons.minus),
                             buttonShape: CircleBorder(),
                             onButtonPressed: () {
@@ -185,7 +187,7 @@ class _InputPageState extends State<InputPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(
+                          IconButtonContent(
                             childWidget: Icon(Icons.add),
                             buttonShape: CircleBorder(),
                             onButtonPressed: () {
@@ -197,7 +199,7 @@ class _InputPageState extends State<InputPage> {
                           SizedBox(
                             width: 20.0,
                           ),
-                          IconButton(
+                          IconButtonContent(
                             childWidget: Icon(FontAwesomeIcons.minus),
                             buttonShape: CircleBorder(),
                             onButtonPressed: () {
@@ -214,55 +216,18 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           )),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ResultsPage();
-              }));
-            },
-            child: Container(
-              child: Center(
-                  child: Text(
-                'Calculate',
-                style: kLabelTextStyle,
-              )),
-              color: kBottomContainerColor,
-              height: kBottomContainerHeight,
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 10.0),
-            ),
-          )
+          BottomButton(buttonText: 'Calculate' , onTapButton: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ResultsPage();
+            }));
+          },)
         ],
       ),
     );
   }
 }
 
-class IconButton extends StatelessWidget {
-  final Function onButtonPressed;
-  final Widget childWidget;
-  final ShapeBorder buttonShape;
 
-  IconButton({
-    @required this.buttonShape,
-    this.childWidget,
-    this.onButtonPressed,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: RawMaterialButton(
-        shape: buttonShape,
-        fillColor: Color(0xFF4C4F5E),
-        //Sizing
-        constraints: BoxConstraints.tightFor(
-          width: 50.0,
-          height: 50.0,
-        ),
-        onPressed: onButtonPressed,
-        elevation: 0.0,
-        child: childWidget,
-      ),
-    );
-  }
-}
+
+
+
