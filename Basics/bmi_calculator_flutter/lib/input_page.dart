@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
 import 'constants.dart';
+import 'results_page.dart';
 
 enum GenderType { male, female }
 
@@ -144,7 +145,7 @@ class _InputPageState extends State<InputPage> {
                           IconButton(
                             childWidget: Icon(Icons.add),
                             buttonShape: CircleBorder(),
-                            onButtonPressed: (){
+                            onButtonPressed: () {
                               setState(() {
                                 currentWeight++;
                               });
@@ -156,7 +157,7 @@ class _InputPageState extends State<InputPage> {
                           IconButton(
                             childWidget: Icon(FontAwesomeIcons.minus),
                             buttonShape: CircleBorder(),
-                            onButtonPressed: (){
+                            onButtonPressed: () {
                               setState(() {
                                 currentWeight--;
                               });
@@ -187,7 +188,7 @@ class _InputPageState extends State<InputPage> {
                           IconButton(
                             childWidget: Icon(Icons.add),
                             buttonShape: CircleBorder(),
-                            onButtonPressed: (){
+                            onButtonPressed: () {
                               setState(() {
                                 currentAge++;
                               });
@@ -199,7 +200,7 @@ class _InputPageState extends State<InputPage> {
                           IconButton(
                             childWidget: Icon(FontAwesomeIcons.minus),
                             buttonShape: CircleBorder(),
-                            onButtonPressed: (){
+                            onButtonPressed: () {
                               setState(() {
                                 currentAge--;
                               });
@@ -213,11 +214,23 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           )),
-          Container(
-            color: kBottomContainerColor,
-            height: kBottomContainerHeight,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 10.0),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ResultsPage();
+              }));
+            },
+            child: Container(
+              child: Center(
+                  child: Text(
+                'Calculate',
+                style: kLabelTextStyle,
+              )),
+              color: kBottomContainerColor,
+              height: kBottomContainerHeight,
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 10.0),
+            ),
           )
         ],
       ),
@@ -226,7 +239,6 @@ class _InputPageState extends State<InputPage> {
 }
 
 class IconButton extends StatelessWidget {
-
   final Function onButtonPressed;
   final Widget childWidget;
   final ShapeBorder buttonShape;
