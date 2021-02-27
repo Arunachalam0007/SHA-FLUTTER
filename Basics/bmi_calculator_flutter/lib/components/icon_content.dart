@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class IconContent extends StatelessWidget {
-
   final IconData icon;
   final String iconText;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
-class BottomButton extends StatelessWidget {
 
+class BottomButton extends StatelessWidget {
   final String buttonText;
   final Function onTapButton;
 
@@ -14,9 +14,9 @@ class BottomButton extends StatelessWidget {
       child: Container(
         child: Center(
             child: Text(
-              buttonText,
-              style: kLargeButtonTextStyle,
-            )),
+          buttonText,
+          style: kLargeButtonTextStyle,
+        )),
         color: kBottomContainerColor,
         height: kBottomContainerHeight,
         width: double.infinity,
