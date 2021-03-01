@@ -6,6 +6,7 @@ import 'package:bmi_calculator_flutter/components/constants.dart';
 import 'package:bmi_calculator_flutter/components//bottom_button.dart';
 import 'package:bmi_calculator_flutter/components/icon_button_content.dart';
 import 'package:bmi_calculator_flutter/components/reusable_card.dart';
+import 'package:bmi_calculator_flutter/components/calculator_brain.dart';
 
 enum GenderType { male, female }
 
@@ -18,7 +19,7 @@ class _InputPageState extends State<InputPage> {
   GenderType gender;
   int currentHeight = 130;
   int currentWeight = 10;
-  int currentAge = 5;
+  int currentAge = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -216,18 +217,24 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           )),
-          BottomButton(buttonText: 'Calculate' , onTapButton: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ResultsPage();
-            }));
-          },)
+          BottomButton(
+            buttonText: 'Calculate',
+            onTapButton: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: currentHeight, weight: currentWeight);
+
+              // Naviagation for next page
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ResultsPage(
+                  bmiResult: calc.calculateBMI(),
+                  resultText: calc.getResult(),
+                  interpretationResult: calc.getInterpretation(),
+                );
+              }));
+            },
+          )
         ],
       ),
     );
   }
 }
-
-
-
-
-
