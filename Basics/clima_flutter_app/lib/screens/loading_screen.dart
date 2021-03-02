@@ -1,6 +1,8 @@
+import 'package:clima_flutter_app/screens/location_screen.dart';
 import 'package:clima_flutter_app/services/location.dart';
+import 'package:clima_flutter_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:clima_flutter_app/services/networking.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -8,38 +10,37 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  double longitude;
+  double latitude;
+  String networkURL;
+
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocationData();
   }
 
-  void getLocation() async {
+  void getLocationData() async {
     Location location = Location();
     await location.getCurrentLocation();
-    await getData();
-    print(location.longitude);
-    print(location.latitude);
-  }
+    longitude = location.longitude;
+    latitude = location.latitude;
+    networkURL =
+        'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$kAPIKey';
+    NetworkHelper networkHelper = NetworkHelper(url: networkURL);
+    var weatherData= networkHelper.getResponseData();
 
-  Future<void> getData() async {
-    http.Response response = await http.get(
-        'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=3cc913675a5741818d6feaf11955e809');
-    print(response.body);
-  }
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+        return LocationScreen();
+    }));
 
+    //   var temperature = weatherData['main']['temp'];
+    //   var condition = weatherData['weather'][0]['id'];
+    //   var cityName = weatherData['name'];
+    // print('$temperature $condition $cityName');
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            //Get the current location
-            getLocation();
-          },
-          child: Text('Get Locations'),
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }
