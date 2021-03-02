@@ -28,18 +28,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
     longitude = location.longitude;
     latitude = location.latitude;
     networkURL =
-        'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$kAPIKey';
+        'http://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$kAPIKey&units=metric';
     NetworkHelper networkHelper = NetworkHelper(url: networkURL);
-    var weatherData = networkHelper.getResponseData();
+    var weatherData = await networkHelper.getResponseData();
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LocationScreen();
+      return LocationScreen(
+        locationWeather: weatherData,
+      );
     }));
-
-    //   var temperature = weatherData['main']['temp'];
-    //   var condition = weatherData['weather'][0]['id'];
-    //   var cityName = weatherData['name'];
-    // print('$temperature $condition $cityName');
   }
 
   @override
